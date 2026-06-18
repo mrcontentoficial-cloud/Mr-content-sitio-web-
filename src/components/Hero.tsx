@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { waLink } from "@/lib/site";
 import ShimmerButton from "./ui/ShimmerButton";
@@ -45,12 +44,16 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.2 }}
         className="pointer-events-none absolute inset-0 z-20 flex w-full flex-col items-center justify-center px-6 text-center"
       >
-        <Image
+        {/* Logo de marca flotante. Usamos <img> plano (no next/image) porque el
+            optimizador del componente Image deja la imagen sin cargar en este
+            setup; el logo de marca debe mostrarse siempre. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/logo-mr-content.png"
           alt="Mister Content"
           width={420}
           height={420}
-          priority
+          fetchPriority="high"
           className="mb-4 h-52 w-52 animate-float object-contain md:h-72 md:w-72"
         />
         <span className="mb-7 text-sm font-bold uppercase tracking-[0.22em] text-accent-bright">
