@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { waLink } from "@/lib/site";
 import ShimmerButton from "./ui/ShimmerButton";
 import { SilkBackground } from "./ui/silk-background-animation";
+import { LazyVisible } from "./ui/LazyVisible";
 
 const rotating = [
   "VENDA.",
@@ -26,8 +27,10 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative h-svh w-full overflow-hidden bg-night">
-      {/* Fondo silk animado */}
-      <SilkBackground className="z-0" />
+      {/* Fondo silk animado (solo activo en pantalla) */}
+      <LazyVisible className="z-0">
+        <SilkBackground />
+      </LazyVisible>
 
       {/* Velo para legibilidad del texto */}
       <div

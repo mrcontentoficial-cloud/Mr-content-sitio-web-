@@ -9,6 +9,7 @@ import {
 import Reveal from "./Reveal";
 import SpotlightCard from "./ui/SpotlightCard";
 import { DitheringBackground } from "./ui/dithering-shader";
+import { LazyVisible } from "./ui/LazyVisible";
 import ShimmerButton from "./ui/ShimmerButton";
 import { waLink } from "@/lib/site";
 
@@ -54,7 +55,9 @@ const services = [
 export default function Services() {
   return (
     <section id="servicios" className="relative overflow-hidden border-t border-white/10 bg-night">
-      <DitheringBackground className="z-0 opacity-50" />
+      <LazyVisible className="z-0 opacity-50">
+        <DitheringBackground />
+      </LazyVisible>
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-night/60" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
         <Reveal>

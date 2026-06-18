@@ -13,6 +13,7 @@ import {
   CarouselItem,
 } from "./ui/carousel";
 import { ShaderAnimation } from "./ui/shader-lines";
+import { LazyVisible } from "./ui/LazyVisible";
 import { waLink } from "@/lib/site";
 
 type CaseStudy = {
@@ -146,9 +147,9 @@ export default function CaseStudies() {
 
   return (
     <section id="casos" className="relative overflow-hidden border-t border-white/10 bg-night">
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 opacity-30">
+      <LazyVisible className="pointer-events-none z-0 opacity-30">
         <ShaderAnimation />
-      </div>
+      </LazyVisible>
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-night/65" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
         <div className="mb-12 flex items-end justify-between">

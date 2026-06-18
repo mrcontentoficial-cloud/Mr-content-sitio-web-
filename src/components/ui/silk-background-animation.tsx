@@ -49,8 +49,8 @@ export function SilkBackground({ className }: { className?: string }) {
       const imageData = ctx.createImageData(width, height);
       const data = imageData.data;
 
-      for (let x = 0; x < width; x += 2) {
-        for (let y = 0; y < height; y += 2) {
+      for (let x = 0; x < width; x += 3) {
+        for (let y = 0; y < height; y += 3) {
           const u = (x / width) * scale;
           const v = (y / height) * scale;
 

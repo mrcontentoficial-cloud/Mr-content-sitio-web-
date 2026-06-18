@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { AuroraShaderBackground } from "./ui/aurora-shader";
+import { LazyVisible } from "./ui/LazyVisible";
 import { waLink } from "@/lib/site";
 
 type Benefit = { text: string; checked: boolean };
@@ -148,7 +149,9 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 export default function Pricing() {
   return (
     <section id="precios" className="relative overflow-hidden border-t border-white/10 bg-night">
-      <AuroraShaderBackground className="z-0 opacity-60" />
+      <LazyVisible className="z-0 opacity-60">
+        <AuroraShaderBackground />
+      </LazyVisible>
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-night/55" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
         <div className="mb-14 text-center">

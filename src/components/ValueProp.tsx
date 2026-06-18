@@ -1,12 +1,15 @@
 import Reveal from "./Reveal";
 import ShimmerButton from "./ui/ShimmerButton";
 import { WarpBackground } from "./ui/warp-shader";
+import { LazyVisible } from "./ui/LazyVisible";
 import { waLink } from "@/lib/site";
 
 export default function ValueProp() {
   return (
     <section id="propuesta" className="relative overflow-hidden bg-night">
-      <WarpBackground className="z-0 opacity-40" />
+      <LazyVisible className="z-0 opacity-40">
+        <WarpBackground />
+      </LazyVisible>
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-night/55" />
       <div className="relative z-10 mx-auto max-w-4xl px-5 py-24 text-center md:px-8 md:py-32">
         <Reveal>
