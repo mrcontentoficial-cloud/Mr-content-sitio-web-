@@ -127,6 +127,56 @@ export default async function CasePage({
         </div>
       </section>
 
+      {/* Galería del trabajo */}
+      {c.gallery && c.gallery.length > 0 && (
+        <section className="bg-night">
+          <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+            <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+              El resultado
+            </h2>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {c.gallery.map((src, i) => (
+                <div
+                  key={src}
+                  className="overflow-hidden rounded-2xl border border-white/10 bg-night-card"
+                >
+                  <Image
+                    src={src}
+                    alt={`${c.name} - trabajo ${i + 1}`}
+                    width={1000}
+                    height={750}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Mapa de ubicación */}
+      {c.mapEmbed && (
+        <section className="border-t border-white/10 bg-night-soft">
+          <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+            <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+              Dónde están
+            </h2>
+            <div className="mt-8 overflow-hidden rounded-2xl border border-white/10">
+              <iframe
+                src={c.mapEmbed}
+                title={`Ubicación de ${c.name}`}
+                width="100%"
+                height="380"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="block w-full grayscale-[0.2]"
+                style={{ border: 0 }}
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       <Contact />
       <WhatsAppFloat />
     </main>

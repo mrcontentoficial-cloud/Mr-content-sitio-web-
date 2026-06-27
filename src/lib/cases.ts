@@ -7,6 +7,8 @@ export type CaseStudy = {
   intro: string;
   work: string[];
   results: { value: string; label: string }[];
+  gallery?: string[];
+  mapEmbed?: string;
 };
 
 export const cases: CaseStudy[] = [
@@ -15,19 +17,21 @@ export const cases: CaseStudy[] = [
     name: "EMJO Consulting",
     logo: "/emjo.png",
     circleBg: "#19212d",
-    category: "Identidad de marca y automatización",
+    category: "Identidad de marca",
     intro:
-      "EMJO Consulting necesitaba verse a la altura de su servicio y dejar de perder mensajes de clientes. Construimos una marca sólida y un sistema que responde por ellos las 24 horas.",
+      "EMJO es un despacho ubicado en León, Gto. Le creamos su identidad de marca desde cero: logo y tarjeta de presentación para que tuviera una presencia profesional y memorable.",
     work: [
-      "Diseño de identidad de marca completa: logo, paleta y tipografías.",
-      "Manual de marca para mantener todo consistente.",
-      "Chatbot de WhatsApp que responde, informa y filtra clientes automáticamente.",
-      "Flujos de atención para no perder ningún mensaje.",
+      "Diseño de logo y línea gráfica de la marca.",
+      "Tarjeta de presentación lista para imprimir.",
+      "Identidad visual coherente para proyectar seriedad.",
     ],
     results: [
-      { value: "24/7", label: "atención automatizada" },
-      { value: "0", label: "mensajes perdidos" },
+      { value: "100%", label: "identidad desde cero" },
+      { value: "Logo", label: "y papelería de marca" },
     ],
+    gallery: ["/emjo-tarjetas.jpg", "/emjo-tarjeta-bolsillo.jpg"],
+    mapEmbed:
+      "https://www.google.com/maps?q=21.105038,-101.6666413&z=16&output=embed",
   },
   {
     slug: "dml-medica",
