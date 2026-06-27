@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Contact from "@/components/Contact";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -130,22 +130,26 @@ export default async function CasePage({
       {/* Galería del trabajo */}
       {c.gallery && c.gallery.length > 0 && (
         <section className="bg-night">
-          <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
-            <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+          <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
+            <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
               El resultado
             </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {c.gallery.map((src, i) => (
                 <div
                   key={src}
-                  className="overflow-hidden rounded-2xl border border-white/10 bg-night-card"
+                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-night-card shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_16px_50px_rgba(155,127,212,0.25)]"
                 >
                   <Image
                     src={src}
-                    alt={`${c.name} - trabajo ${i + 1}`}
+                    alt={`${c.name} trabajo ${i + 1}`}
                     width={1000}
                     height={750}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
                 </div>
               ))}
@@ -157,19 +161,43 @@ export default async function CasePage({
       {/* Mapa de ubicación */}
       {c.mapEmbed && (
         <section className="border-t border-white/10 bg-night-soft">
-          <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
             <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
               Dónde están
             </h2>
-            <div className="mt-8 overflow-hidden rounded-2xl border border-white/10">
+
+            {c.address && (
+              <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="flex items-start gap-2 text-white/90">
+                  <MapPin className="mt-0.5 size-5 shrink-0 text-accent" />
+                  {c.address}
+                </p>
+                {c.mapUrl && (
+                  <a
+                    href={c.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-black transition-all hover:shadow-[0_0_24px_rgba(155,127,212,0.5)]"
+                    style={{
+                      background:
+                        "linear-gradient(110deg, #b89dee 0%, #9b7fd4 50%, #c77dff 100%)",
+                    }}
+                  >
+                    <MapPin className="size-4" /> Cómo llegar
+                  </a>
+                )}
+              </div>
+            )}
+
+            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
               <iframe
                 src={c.mapEmbed}
                 title={`Ubicación de ${c.name}`}
                 width="100%"
-                height="380"
+                height="360"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="block w-full grayscale-[0.2]"
+                className="block w-full"
                 style={{ border: 0 }}
               />
             </div>

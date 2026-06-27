@@ -9,6 +9,8 @@ export type CaseStudy = {
   results: { value: string; label: string }[];
   gallery?: string[];
   mapEmbed?: string;
+  address?: string;
+  mapUrl?: string;
 };
 
 export const cases: CaseStudy[] = [
@@ -32,6 +34,9 @@ export const cases: CaseStudy[] = [
     gallery: ["/emjo-tarjetas.jpg", "/emjo-tarjeta-bolsillo.jpg"],
     mapEmbed:
       "https://www.google.com/maps?q=21.105038,-101.6666413&z=16&output=embed",
+    address: "C. Beethoven 511, León Moderno, 37480 León de los Aldama, Gto.",
+    mapUrl:
+      "https://www.google.com/maps/place/C.+Beethoven+511,+Le%C3%B3n+Moderno,+37480+Le%C3%B3n+de+los+Aldama,+Gto./@21.105038,-101.6666413,17z",
   },
   {
     slug: "dml-medica",
