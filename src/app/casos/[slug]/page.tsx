@@ -58,7 +58,10 @@ export default async function CasePage({
           </Link>
 
           <div className="mt-10 flex flex-col items-center text-center">
-            <div className="flex h-36 w-36 items-center justify-center rounded-full border border-white/15 bg-white/5 p-6 ring-1 ring-accent/30">
+            <div
+              style={{ backgroundColor: c.circleBg }}
+              className="flex h-36 w-36 items-center justify-center rounded-full border border-white/15 p-6 ring-1 ring-accent/30"
+            >
               <Image
                 src={c.logo}
                 alt={c.name}

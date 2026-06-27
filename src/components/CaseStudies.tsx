@@ -45,7 +45,10 @@ export default function CaseStudies() {
                     aria-hidden
                     className="absolute -inset-3 rounded-full bg-accent/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
                   />
-                  <div className="relative flex h-40 w-40 items-center justify-center rounded-full border border-white/15 bg-white/5 p-7 ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent/60 group-hover:ring-accent/40 md:h-48 md:w-48">
+                  <div
+                    style={{ backgroundColor: c.circleBg }}
+                    className="relative flex h-40 w-40 items-center justify-center rounded-full border border-white/15 p-7 ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent/60 group-hover:ring-accent/40 md:h-48 md:w-48"
+                  >
                     <Image
                       src={c.logo}
                       alt={c.name}
