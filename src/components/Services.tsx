@@ -81,7 +81,7 @@ export default function Services() {
               className="p-7 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(155,127,212,0.18)]"
             >
               {/* Número fantasma */}
-              <span className="font-display pointer-events-none absolute -right-2 -top-6 text-8xl font-bold text-white/15 [text-shadow:0_0_18px_rgba(255,255,255,0.25)] transition-colors duration-300 group-hover:text-white/25">
+              <span className="font-display pointer-events-none absolute -right-2 -top-6 text-8xl font-bold text-white/55 [text-shadow:0_0_18px_rgba(255,255,255,0.35)] transition-colors duration-300 group-hover:text-white/80">
                 {String(i + 1).padStart(2, "0")}
               </span>
 

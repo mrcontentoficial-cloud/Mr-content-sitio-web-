@@ -32,7 +32,7 @@ export default function SpotlightCard({
       onMouseMove={handleMove}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-night-card transition-colors duration-300 hover:border-accent/50 ${className}`}
+      className={`group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-night-card transition-colors duration-300 hover:border-accent/50 ${className}`}
     >
       {/* spotlight que sigue el cursor */}
       <div
