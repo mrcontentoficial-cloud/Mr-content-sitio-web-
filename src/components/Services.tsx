@@ -70,7 +70,7 @@ export default function Services() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
           {services.map((service, i) => (
             <SpotlightCard
               key={service.title}
@@ -78,24 +78,24 @@ export default function Services() {
               href={waLink(
                 `Hola Mister Content, quiero información sobre ${service.title.toLowerCase()}.`
               )}
-              className="p-7 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(155,127,212,0.18)]"
+              className="p-5 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(155,127,212,0.18)] sm:p-7"
             >
               {/* Número fantasma */}
-              <span className="font-display pointer-events-none absolute -right-2 -top-6 text-8xl font-bold text-white/55 [text-shadow:0_0_18px_rgba(255,255,255,0.35)] transition-colors duration-300 group-hover:text-white/80">
+              <span className="font-display pointer-events-none absolute -right-1 -top-4 text-5xl font-bold text-white/55 [text-shadow:0_0_18px_rgba(255,255,255,0.35)] transition-colors duration-300 group-hover:text-white/80 sm:-right-2 sm:-top-6 sm:text-8xl">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
               <div className="relative flex h-full flex-col">
-                <div className="mb-5 inline-flex w-fit rounded-xl border border-white/15 bg-white/5 p-3.5 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:border-accent group-hover:bg-accent group-hover:text-black">
-                  <service.icon size={32} strokeWidth={1.8} />
+                <div className="mb-4 inline-flex w-fit rounded-xl border border-white/15 bg-white/5 p-2.5 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:border-accent group-hover:bg-accent group-hover:text-black sm:mb-5 sm:p-3.5">
+                  <service.icon className="size-6 sm:size-8" strokeWidth={1.8} />
                 </div>
-                <h3 className="font-display text-xl font-bold tracking-tight">
+                <h3 className="font-display text-base font-bold tracking-tight sm:text-xl">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-white/90">
+                <p className="mt-2 text-[13px] leading-relaxed text-white/90 sm:mt-3 sm:text-[15px]">
                   {service.description}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                <span className="mt-4 hidden items-center gap-1 text-sm font-semibold text-accent opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:mt-5 sm:inline-flex">
                   Cotizar por WhatsApp →
                 </span>
               </div>

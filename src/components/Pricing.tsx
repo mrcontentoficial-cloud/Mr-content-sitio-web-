@@ -179,9 +179,14 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {plans.map((plan, i) => (
-            <PlanCard key={plan.tier} plan={plan} index={i} />
+            <div
+              key={plan.tier}
+              className="min-w-[80%] shrink-0 snap-center sm:min-w-[55%] md:min-w-0 md:shrink"
+            >
+              <PlanCard plan={plan} index={i} />
+            </div>
           ))}
         </div>
 

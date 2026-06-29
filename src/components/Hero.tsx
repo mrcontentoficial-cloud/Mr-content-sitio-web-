@@ -42,7 +42,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.2 }}
-        className="pointer-events-none absolute inset-0 z-20 flex w-full flex-col items-center justify-center px-6 text-center"
+        className="pointer-events-none absolute inset-0 z-20 flex w-full flex-col items-center justify-center px-6 pt-20 text-center"
       >
         {/* Logo de marca flotante. Usamos <img> plano (no next/image) porque el
             optimizador del componente Image deja la imagen sin cargar en este
@@ -54,9 +54,9 @@ export default function Hero() {
           width={420}
           height={420}
           fetchPriority="high"
-          className="mb-4 h-52 w-52 animate-float object-contain md:h-72 md:w-72"
+          className="mb-3 h-44 w-44 animate-float object-contain md:h-72 md:w-72"
         />
-        <span className="mb-7 text-sm font-bold uppercase tracking-[0.22em] text-accent-bright">
+        <span className="mb-5 text-sm font-bold uppercase tracking-[0.22em] text-accent-bright md:mb-7">
           Agencia creativa
         </span>
 
@@ -80,11 +80,11 @@ export default function Hero() {
           </span>
         </h1>
 
-        <p className="mt-7 max-w-2xl text-base text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] md:text-xl">
+        <p className="mt-5 max-w-2xl text-base text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] md:mt-7 md:text-xl">
           Estrategia, contenido y tecnología que hacen que tu negocio venda.
         </p>
 
-        <div className="pointer-events-auto mt-10 flex flex-col items-center gap-4 sm:flex-row">
+        <div className="pointer-events-auto mt-8 flex flex-col items-center gap-4 sm:flex-row md:mt-10">
           <ShimmerButton href={waLink()} className="px-10 py-5 text-lg">
             Hablemos por WhatsApp
           </ShimmerButton>
@@ -103,7 +103,7 @@ export default function Hero() {
       <a
         href="#propuesta"
         aria-label="Bajar"
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-white/90 transition-colors hover:text-accent"
+        className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 text-white/90 transition-colors hover:text-accent sm:block"
       >
         <svg
           width="22"
