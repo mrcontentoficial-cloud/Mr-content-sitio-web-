@@ -19,7 +19,7 @@ export const cases: CaseStudy[] = [
     slug: "emjo-consulting",
     name: "EMJO Consulting",
     logo: "/emjo.png",
-    circleBg: "#19212d",
+    circleBg: "#18233f",
     category: "Identidad de marca",
     intro:
       "EMJO es un despacho ubicado en León, Gto. Le creamos su identidad de marca desde cero: logo y tarjeta de presentación para que tuviera una presencia profesional y memorable.",
