@@ -64,7 +64,7 @@ export default function Hero() {
           <span className="font-coolvetica mb-3 block text-4xl font-bold tracking-[0.06em] text-white md:text-6xl">
             Hacemos que tu negocio
           </span>
-          <span className="relative block text-6xl leading-[0.9] md:text-8xl">
+          <span className="relative block overflow-visible pb-3 text-6xl leading-[1.08] md:text-8xl">
             <AnimatePresence mode="wait">
               <motion.span
                 key={idx}
@@ -72,7 +72,7 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                 exit={{ y: -28, opacity: 0, filter: "blur(8px)" }}
                 transition={{ duration: 0.45 }}
-                className="inline-block uppercase text-gradient"
+                className="inline-block px-1 pb-1 uppercase text-gradient"
               >
                 {rotating[idx]}
               </motion.span>
