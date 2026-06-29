@@ -67,7 +67,7 @@ export default function Process() {
             className="absolute left-0 top-7 hidden h-px w-full bg-gradient-to-r from-accent via-accent-magenta to-accent lg:block"
           />
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 sm:gap-10 lg:grid-cols-4">
             {steps.map((step, i) => (
               <motion.div
                 key={step.title}
