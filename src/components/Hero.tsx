@@ -89,7 +89,7 @@ export default function Hero() {
             Hablemos por WhatsApp
           </ShimmerButton>
           <ShimmerButton
-            href="#servicios"
+            href="#casos"
             variant="ghost"
             external={false}
             className="px-10 py-5 text-lg"
