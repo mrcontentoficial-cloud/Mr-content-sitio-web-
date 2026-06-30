@@ -45,6 +45,20 @@ export default function ContactForm() {
       (form.business.trim() ? `Negocio: ${form.business.trim()}\n` : "") +
       `Me interesa: ${form.service}\n` +
       (form.message.trim() ? `\nDetalles: ${form.message.trim()}` : "");
+
+    // Guardar el lead por correo (Formspree) aunque no completen el WhatsApp
+    fetch("https://formspree.io/f/mvzjbkdo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        nombre: form.name.trim(),
+        negocio: form.business.trim(),
+        interes: form.service,
+        mensaje: form.message.trim(),
+        _subject: `Nuevo lead del sitio: ${form.name.trim()}`,
+      }),
+    }).catch(() => {});
+
     const url = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(text)}`;
     setSentUrl(url);
     window.open(url, "_blank", "noopener,noreferrer");
