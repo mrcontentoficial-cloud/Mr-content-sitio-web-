@@ -121,7 +121,7 @@ export const cases: CaseStudy[] = [
       { value: "100%", label: "identidad desde cero" },
       { value: "Logo", label: "y marca propia" },
     ],
-    gallery: ["/deli-deli-mockup.jpg"],
+    gallery: ["/deli-deli-mockup.jpg", "/deli-deli-caja.jpg", "/deli-deli-bolsa.jpg"],
   },
 ];
 
