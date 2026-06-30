@@ -22,7 +22,7 @@ export default function TabTitleHook() {
         timer = setInterval(() => {
           idx = (idx + 1) % AWAY_MESSAGES.length;
           document.title = AWAY_MESSAGES[idx];
-        }, 2500);
+        }, 1200);
       } else {
         // Regresó: restauramos el título original
         if (timer) clearInterval(timer);
