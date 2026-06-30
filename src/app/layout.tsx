@@ -3,6 +3,7 @@ import { Poppins, Space_Grotesk, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import TabTitleHook from "@/components/TabTitleHook";
 import { SITE } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
@@ -95,6 +96,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-night text-white">
         {children}
+        <TabTitleHook />
         <Analytics />
         <SpeedInsights />
       </body>
