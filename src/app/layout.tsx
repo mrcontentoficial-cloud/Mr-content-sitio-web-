@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins, Space_Grotesk, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
@@ -69,9 +71,32 @@ export default function RootLayout({
     >
       <head>
         <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: SITE.name,
+              url: SITE.url,
+              logo: `${SITE.url}/logo-mr-content.png`,
+              description:
+                "Agencia creativa digital: sitios web, identidad de marca, redes sociales, contenido, automatización de WhatsApp y publicidad.",
+              sameAs: [SITE.social.instagram, SITE.social.facebook],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                email: SITE.email,
+                availableLanguage: "es",
+              },
+            }),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-night text-white">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
