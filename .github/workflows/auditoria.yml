@@ -19,3 +19,19 @@ jobs:
         run: npm ci
       - name: Auditar vulnerabilidades (alto y crítico)
         run: npm audit --audit-level=high
+
+      - name: Avisar por WhatsApp si hay vulnerabilidades
+        if: failure()
+        env:
+          PHONE: ${{ secrets.WHATSAPP_PHONE }}
+          APIKEY: ${{ secrets.WHATSAPP_APIKEY }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$APIKEY" ] || [ -z "$PHONE" ]; then
+            echo "Sin secretos de WhatsApp configurados; se omite el aviso."; exit 0
+          fi
+          MSG="🟡 MARK: la auditoría encontró vulnerabilidades en las librerías del sitio. Revisa: $RUN_URL"
+          curl -sS -G "https://api.callmebot.com/whatsapp.php" \
+            --data-urlencode "phone=$PHONE" \
+            --data-urlencode "text=$MSG" \
+            --data-urlencode "apikey=$APIKEY" || true

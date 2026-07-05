@@ -48,3 +48,19 @@ jobs:
           days=$(( (end_ts - now_ts) / 86400 ))
           echo "Faltan $days días para que venza el SSL"
           if [ "$days" -lt 10 ]; then echo "::error::El certificado SSL vence en $days días"; exit 1; fi
+
+      - name: Avisar por WhatsApp si algo falló
+        if: failure()
+        env:
+          PHONE: ${{ secrets.WHATSAPP_PHONE }}
+          APIKEY: ${{ secrets.WHATSAPP_APIKEY }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$APIKEY" ] || [ -z "$PHONE" ]; then
+            echo "Sin secretos de WhatsApp configurados; se omite el aviso."; exit 0
+          fi
+          MSG="🔴 MARK: el Guardián detectó una falla en mistercontent.studio. Revisa: $RUN_URL"
+          curl -sS -G "https://api.callmebot.com/whatsapp.php" \
+            --data-urlencode "phone=$PHONE" \
+            --data-urlencode "text=$MSG" \
+            --data-urlencode "apikey=$APIKEY" || true
