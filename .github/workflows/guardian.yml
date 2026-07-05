@@ -1,0 +1,50 @@
+name: Guardián del sitio
+
+# Vigila mistercontent.studio las 24 horas desde la nube de GitHub.
+# Si algo falla, el paso correspondiente truena y GitHub te manda correo.
+on:
+  schedule:
+    - cron: "17,47 * * * *" # cada 30 minutos
+  workflow_dispatch: {} # también se puede correr a mano desde GitHub
+
+jobs:
+  vigilancia:
+    runs-on: ubuntu-latest
+    steps:
+      - name: El sitio responde (portada)
+        run: |
+          code=$(curl -sS -o /dev/null -w "%{http_code}" -L https://mistercontent.studio)
+          echo "Portada -> HTTP $code"
+          if [ "$code" != "200" ]; then echo "::error::La portada no responde 200 (fue $code)"; exit 1; fi
+
+      - name: Páginas clave responden
+        run: |
+          for path in "/nosotros" "/casos/emjo-consulting" "/casos/dml-medica"; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" -L "https://mistercontent.studio$path")
+            echo "$path -> HTTP $code"
+            if [ "$code" != "200" ]; then echo "::error::$path no responde 200 (fue $code)"; exit 1; fi
+          done
+
+      - name: security.txt sigue publicado
+        run: |
+          code=$(curl -sS -o /dev/null -w "%{http_code}" -L https://mistercontent.studio/.well-known/security.txt)
+          echo "security.txt -> HTTP $code"
+          if [ "$code" != "200" ]; then echo "::error::security.txt no está accesible (fue $code)"; exit 1; fi
+
+      - name: Los bots de IA siguen bloqueados
+        run: |
+          robots=$(curl -sS -L https://mistercontent.studio/robots.txt)
+          echo "$robots"
+          if ! echo "$robots" | grep -qi "GPTBot"; then
+            echo "::error::robots.txt ya no bloquea a los crawlers de IA"; exit 1
+          fi
+
+      - name: El certificado SSL no está por vencer
+        run: |
+          end=$(echo | openssl s_client -servername mistercontent.studio -connect mistercontent.studio:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+          echo "SSL vence: $end"
+          end_ts=$(date -d "$end" +%s)
+          now_ts=$(date +%s)
+          days=$(( (end_ts - now_ts) / 86400 ))
+          echo "Faltan $days días para que venza el SSL"
+          if [ "$days" -lt 10 ]; then echo "::error::El certificado SSL vence en $days días"; exit 1; fi

@@ -1,0 +1,21 @@
+name: Auditoría de seguridad
+
+# Revisa cada día que las dependencias del sitio no tengan
+# vulnerabilidades conocidas de nivel alto o crítico.
+on:
+  schedule:
+    - cron: "23 6 * * *" # todos los días ~6:23 AM
+  workflow_dispatch: {}
+
+jobs:
+  dependencias:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Auditar vulnerabilidades (alto y crítico)
+        run: npm audit --audit-level=high
