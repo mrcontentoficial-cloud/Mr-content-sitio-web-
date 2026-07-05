@@ -7,6 +7,7 @@ export type CaseStudy = {
   intro: string;
   work: string[];
   results: { value: string; label: string }[];
+  website?: string;
   gallery?: string[];
   mapEmbed?: string;
   address?: string;
@@ -15,6 +16,31 @@ export type CaseStudy = {
 };
 
 export const cases: CaseStudy[] = [
+  {
+    slug: "dr-jorge-reyes",
+    name: "Dr. Jorge Reyes",
+    logo: "/dr-jorge.png",
+    circleBg: "#ffffff",
+    category: "Redes, contenido y sitio web",
+    intro:
+      "El Dr. Jorge Reyes es cirujano gastrointestinal y laparoscopista en León e Irapuato. Le construimos una presencia digital completa: gestionamos sus redes, le creamos contenido que genera confianza en sus pacientes y le desarrollamos su sitio web con dominio propio para que lo encuentren y agenden con seguridad.",
+    work: [
+      "Gestión profesional de sus redes sociales.",
+      "Creación de contenido para conectar con sus pacientes.",
+      "Diseño y desarrollo de su sitio web con dominio propio.",
+    ],
+    results: [
+      { value: "360°", label: "presencia digital integral" },
+      { value: "Sitio web", label: "con dominio propio" },
+    ],
+    website: "https://dr-jorge.com",
+    socials: [
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/dr.jorgereyes.cirujano/",
+      },
+    ],
+  },
   {
     slug: "emjo-consulting",
     name: "EMJO Consulting",

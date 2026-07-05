@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, MapPin } from "lucide-react";
+import { ArrowLeft, Check, MapPin, Globe } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Contact from "@/components/Contact";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -118,6 +118,25 @@ export default async function CasePage({
               </div>
             ))}
           </div>
+
+          {/* Ver sitio web */}
+          {c.website && (
+            <div className="mt-12 flex justify-center">
+              <a
+                href={c.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-black transition-all hover:shadow-[0_0_30px_rgba(155,127,212,0.55)]"
+                style={{
+                  background:
+                    "linear-gradient(110deg, #b89dee 0%, #9b7fd4 50%, #c77dff 100%)",
+                }}
+              >
+                <Globe className="size-5 transition-transform group-hover:rotate-12" />
+                Ver sitio web
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
