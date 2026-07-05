@@ -9,6 +9,7 @@ export type CaseStudy = {
   results: { value: string; label: string }[];
   website?: string;
   gallery?: string[];
+  galleryAspect?: "landscape" | "portrait" | "square";
   mapEmbed?: string;
   address?: string;
   mapUrl?: string;
@@ -34,6 +35,13 @@ export const cases: CaseStudy[] = [
       { value: "Sitio web", label: "con dominio propio" },
     ],
     website: "https://dr-jorge.com",
+    gallery: [
+      "/dr-jorge-1.jpg",
+      "/dr-jorge-2.jpg",
+      "/dr-jorge-3.jpg",
+      "/dr-jorge-4.jpg",
+    ],
+    galleryAspect: "portrait",
     socials: [
       {
         type: "instagram",

@@ -179,11 +179,23 @@ export default async function CasePage({
             <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
               El resultado
             </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <div
+              className={`mt-10 grid gap-6 ${
+                c.galleryAspect === "portrait"
+                  ? "grid-cols-2 md:grid-cols-4"
+                  : "sm:grid-cols-2"
+              }`}
+            >
               {c.gallery.map((src, i) => (
                 <div
                   key={src}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-night-card shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_16px_50px_rgba(155,127,212,0.25)]"
+                  className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-night-card shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_16px_50px_rgba(155,127,212,0.25)] ${
+                    c.galleryAspect === "portrait"
+                      ? "aspect-[3/4]"
+                      : c.galleryAspect === "square"
+                        ? "aspect-square"
+                        : "aspect-[4/3]"
+                  }`}
                 >
                   <Image
                     src={src}
