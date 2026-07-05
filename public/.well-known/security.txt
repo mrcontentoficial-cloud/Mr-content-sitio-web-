@@ -1,0 +1,7 @@
+# Política de seguridad de Mister Content
+# Si encontraste un fallo de seguridad, avísanos de forma responsable.
+
+Contact: mailto:mistercontentoficial@gmail.com
+Expires: 2027-07-05T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://mistercontent.studio/.well-known/security.txt
