@@ -104,25 +104,6 @@ export const cases: CaseStudy[] = [
     ],
     gallery: ["/antojo-crunch-logo.jpg", "/antojo-crunch-texto.jpg"],
   },
-  {
-    slug: "deli-deli",
-    name: "Deli Deli",
-    logo: "/deli-deli-logo.jpg",
-    circleBg: "#f2ede4",
-    category: "Identidad de marca",
-    intro:
-      "Deli Deli es una emprendedora de Irapuato, Gto. que vende dulces y postres sin tienda física. Le creamos su logo y su identidad de marca para que su dulzura se note desde el primer vistazo.",
-    work: [
-      "Diseño de logo con personalidad y antojo.",
-      "Identidad de marca completa (colores y tipografías).",
-      "Línea gráfica lista para redes y empaques.",
-    ],
-    results: [
-      { value: "100%", label: "identidad desde cero" },
-      { value: "Logo", label: "y marca propia" },
-    ],
-    gallery: ["/deli-deli-mockup.jpg", "/deli-deli-caja.jpg", "/deli-deli-bolsa.jpg"],
-  },
 ];
 
 export function getCase(slug: string) {
