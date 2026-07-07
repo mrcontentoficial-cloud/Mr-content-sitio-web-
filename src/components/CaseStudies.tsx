@@ -5,17 +5,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
-import { ShaderAnimation } from "./ui/shader-lines";
+import { DottedSurface } from "./ui/dotted-surface";
 import { LazyVisible } from "./ui/LazyVisible";
 import { cases } from "@/lib/cases";
 
 export default function CaseStudies() {
   return (
     <section id="casos" className="relative overflow-hidden border-t border-white/10 bg-night">
-      <LazyVisible className="pointer-events-none z-0 opacity-30">
-        <ShaderAnimation />
+      <LazyVisible className="pointer-events-none z-0">
+        <DottedSurface />
       </LazyVisible>
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-night/65" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-night/55" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
         <Reveal>

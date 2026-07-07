@@ -6,58 +6,54 @@ import * as THREE from "three";
 
 type DottedSurfaceProps = Omit<React.ComponentProps<"div">, "ref">;
 
+/**
+ * Fondo animado de puntos (ola en 3D) para Mister Content.
+ * Adaptado a la marca: puntos en morado, sin next-themes, y dimensionado
+ * a su contenedor (no a pantalla completa) para usarse como fondo de sección.
+ */
 export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<{
-    scene: THREE.Scene;
-    camera: THREE.PerspectiveCamera;
-    renderer: THREE.WebGLRenderer;
-    particles: THREE.Points[];
-    animationId: number;
-    count: number;
-  } | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const SEPARATION = 150;
     const AMOUNTX = 40;
     const AMOUNTY = 60;
 
+    const getSize = () => ({
+      w: container.clientWidth || window.innerWidth,
+      h: container.clientHeight || window.innerHeight,
+    });
+
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      1,
-      10000
-    );
+    const { w, h } = getSize();
+    const camera = new THREE.PerspectiveCamera(60, w / h, 1, 10000);
     camera.position.set(0, 355, 1220);
 
-    const renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true,
-    });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setSize(w, h);
     renderer.setClearColor(0x000000, 0);
+    container.appendChild(renderer.domElement);
 
-    containerRef.current.appendChild(renderer.domElement);
-
+    const geometry = new THREE.BufferGeometry();
     const positions: number[] = [];
     const colors: number[] = [];
-    const geometry = new THREE.BufferGeometry();
 
-    // Color morado de marca para los puntos
-    const dot = { r: 132, g: 108, b: 196 };
+    // Morado de marca (~#b89dee)
+    const cr = 0.72;
+    const cg = 0.62;
+    const cb = 0.93;
 
     for (let ix = 0; ix < AMOUNTX; ix++) {
       for (let iy = 0; iy < AMOUNTY; iy++) {
         const x = ix * SEPARATION - (AMOUNTX * SEPARATION) / 2;
-        const y = 0;
         const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
-        positions.push(x, y, z);
-        colors.push(dot.r, dot.g, dot.b);
+        positions.push(x, 0, z);
+        colors.push(cr, cg, cb);
       }
     }
 
@@ -68,10 +64,10 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
     geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 7,
+      size: 8,
       vertexColors: true,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.6,
       sizeAttenuation: true,
     });
 
@@ -104,41 +100,27 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
     };
 
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const { w, h } = getSize();
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(w, h);
     };
 
+    const ro = new ResizeObserver(handleResize);
+    ro.observe(container);
     window.addEventListener("resize", handleResize);
+
     animate();
 
-    sceneRef.current = {
-      scene,
-      camera,
-      renderer,
-      particles: [points],
-      animationId,
-      count,
-    };
-
     return () => {
+      cancelAnimationFrame(animationId);
+      ro.disconnect();
       window.removeEventListener("resize", handleResize);
-      if (sceneRef.current) {
-        cancelAnimationFrame(sceneRef.current.animationId);
-        sceneRef.current.scene.traverse((object) => {
-          if (object instanceof THREE.Points) {
-            object.geometry.dispose();
-            if (Array.isArray(object.material)) {
-              object.material.forEach((m) => m.dispose());
-            } else {
-              object.material.dispose();
-            }
-          }
-        });
-        sceneRef.current.renderer.dispose();
-        if (containerRef.current && sceneRef.current.renderer.domElement) {
-          containerRef.current.removeChild(sceneRef.current.renderer.domElement);
-        }
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
+      if (renderer.domElement.parentNode === container) {
+        container.removeChild(renderer.domElement);
       }
     };
   }, []);
@@ -146,7 +128,11 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
   return (
     <div
       ref={containerRef}
-      className={cn("pointer-events-none absolute inset-0", className)}
+      aria-hidden
+      className={cn(
+        "pointer-events-none absolute inset-0 h-full w-full",
+        className
+      )}
       {...props}
     />
   );

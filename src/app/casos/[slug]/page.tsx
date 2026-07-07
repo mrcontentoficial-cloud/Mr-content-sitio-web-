@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Contact from "@/components/Contact";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import ShimmerButton from "@/components/ui/ShimmerButton";
+import { DottedSurface } from "@/components/ui/dotted-surface";
 import { cases, getCase } from "@/lib/cases";
 import { waLink } from "@/lib/site";
 
@@ -74,10 +75,16 @@ export default async function CasePage({
   if (!c) notFound();
 
   return (
-    <main>
-      <Navbar />
+    <main className="relative bg-night">
+      {/* Fondo animado de puntos detrás de toda la ficha */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 z-0">
+        <DottedSurface />
+      </div>
 
-      <section className="relative overflow-hidden border-b border-white/10 bg-night">
+      <div className="relative z-10">
+        <Navbar />
+
+      <section className="relative overflow-hidden border-b border-white/10 bg-night/60">
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[150px]"
@@ -151,7 +158,7 @@ export default async function CasePage({
       </section>
 
       {/* Qué hicimos */}
-      <section className="bg-night-soft">
+      <section className="bg-night-soft/65">
         <div className="mx-auto max-w-3xl px-5 py-20 md:px-8 md:py-28">
           <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
             Qué hicimos
@@ -184,7 +191,7 @@ export default async function CasePage({
 
       {/* Galería del trabajo */}
       {c.gallery && c.gallery.length > 0 && (
-        <section className="bg-night">
+        <section className="bg-night/60">
           <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
             <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
               El resultado
@@ -227,7 +234,7 @@ export default async function CasePage({
 
       {/* Videos */}
       {c.videos && c.videos.length > 0 && (
-        <section className="border-t border-white/10 bg-night-soft">
+        <section className="border-t border-white/10 bg-night-soft/65">
           <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
             <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
               Míralo en acción
@@ -264,7 +271,7 @@ export default async function CasePage({
 
       {/* Redes / contenido */}
       {c.socials && c.socials.length > 0 && (
-        <section className="border-t border-white/10 bg-night">
+        <section className="border-t border-white/10 bg-night/60">
           <div className="mx-auto max-w-4xl px-5 py-16 text-center md:px-8 md:py-20">
             <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
               Mira su contenido
@@ -292,7 +299,7 @@ export default async function CasePage({
 
       {/* Mapa de ubicación */}
       {c.mapEmbed && (
-        <section className="border-t border-white/10 bg-night-soft">
+        <section className="border-t border-white/10 bg-night-soft/65">
           <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
             <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
               Dónde están
@@ -337,7 +344,9 @@ export default async function CasePage({
         </section>
       )}
 
-      <Contact />
+        <Contact />
+      </div>
+
       <WhatsAppFloat />
     </main>
   );
