@@ -36,7 +36,11 @@ export const cases: CaseStudy[] = [
       { value: "Sitio web", label: "con dominio propio" },
     ],
     website: "https://dr-jorge.com",
-    videos: ["https://youtube.com/shorts/9TJGXFKGESI"],
+    videos: [
+      "https://youtube.com/shorts/9TJGXFKGESI",
+      "https://youtube.com/shorts/bWNmCsPUrkk",
+      "https://youtube.com/shorts/0JcwaZxKslc",
+    ],
     gallery: [
       "/dr-jorge-1.jpg",
       "/dr-jorge-2.jpg",
