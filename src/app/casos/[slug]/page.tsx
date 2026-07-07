@@ -235,11 +235,21 @@ export default async function CasePage({
       {/* Videos */}
       {c.videos && c.videos.length > 0 && (
         <section className="border-t border-white/10 bg-night-soft/65">
-          <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
             <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
               Míralo en acción
             </h2>
-            <div className="mt-10 flex flex-wrap items-start justify-center gap-6">
+            <div
+              className={`mt-10 grid justify-items-center gap-4 sm:gap-6 ${
+                c.videos.length === 2
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : c.videos.length === 4
+                    ? "grid-cols-2"
+                    : c.videos.length >= 3
+                      ? "grid-cols-1 sm:grid-cols-3"
+                      : ""
+              }`}
+            >
               {c.videos.map((v, i) => {
                 const embed = youtubeEmbed(v);
                 if (!embed) return null;
