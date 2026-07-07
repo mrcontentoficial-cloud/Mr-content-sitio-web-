@@ -294,7 +294,7 @@ export default async function CasePage({
       {c.socials && c.socials.length > 0 && (
         <section className="border-t border-white/10 bg-night/60">
           <div className="mx-auto max-w-4xl px-5 py-16 text-center md:px-8 md:py-20">
-            <h2 className="font-coolvetica text-4xl font-bold uppercase tracking-tight text-white md:text-6xl">
+            <h2 className="font-coolvetica text-4xl font-bold uppercase tracking-[0.06em] text-white md:text-6xl">
               Mira su contenido
             </h2>
             <p className="mt-4 text-lg text-white/90">
