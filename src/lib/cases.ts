@@ -20,7 +20,7 @@ export const cases: CaseStudy[] = [
   {
     slug: "dr-jorge-reyes",
     name: "Dr. Jorge Reyes",
-    logo: "/dr-jorge.png",
+    logo: "/dr-jorge.jpg",
     circleBg: "#ffffff",
     category: "Redes, contenido y sitio web",
     intro:
