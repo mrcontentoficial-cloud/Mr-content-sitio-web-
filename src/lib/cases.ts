@@ -8,6 +8,7 @@ export type CaseStudy = {
   work: string[];
   results: { value: string; label: string }[];
   website?: string;
+  videos?: string[]; // links o IDs de YouTube (subir como "No listado")
   gallery?: string[];
   galleryAspect?: "landscape" | "portrait" | "square";
   mapEmbed?: string;

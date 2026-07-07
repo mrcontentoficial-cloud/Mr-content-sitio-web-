@@ -36,6 +36,16 @@ function SocialIcon({ type }: { type: "facebook" | "instagram" | "tiktok" }) {
 
 const socialLabel = { facebook: "Facebook", instagram: "Instagram", tiktok: "TikTok" } as const;
 
+// Acepta links de YouTube (watch, youtu.be, embed, shorts) o un ID suelto
+// y devuelve la URL de reproductor con privacidad reforzada.
+function youtubeEmbed(input: string): string | null {
+  const m = input.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{11})/
+  );
+  const id = m ? m[1] : /^[\w-]{11}$/.test(input.trim()) ? input.trim() : null;
+  return id ? `https://www.youtube-nocookie.com/embed/${id}?rel=0` : null;
+}
+
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }));
 }
@@ -210,6 +220,42 @@ export default async function CasePage({
                   />
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Videos */}
+      {c.videos && c.videos.length > 0 && (
+        <section className="border-t border-white/10 bg-night-soft">
+          <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
+            <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
+              Míralo en acción
+            </h2>
+            <div
+              className={`mt-10 grid gap-6 ${
+                c.videos.length > 1 ? "md:grid-cols-2" : ""
+              }`}
+            >
+              {c.videos.map((v, i) => {
+                const embed = youtubeEmbed(v);
+                if (!embed) return null;
+                return (
+                  <div
+                    key={v}
+                    className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/5"
+                  >
+                    <iframe
+                      src={embed}
+                      title={`${c.name} video ${i + 1}`}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
