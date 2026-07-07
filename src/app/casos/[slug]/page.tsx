@@ -8,6 +8,8 @@ import Contact from "@/components/Contact";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import ShimmerButton from "@/components/ui/ShimmerButton";
 import { DottedSurface } from "@/components/ui/dotted-surface";
+import { SilkBackground } from "@/components/ui/silk-background-animation";
+import { LazyVisible } from "@/components/ui/LazyVisible";
 import { cases, getCase } from "@/lib/cases";
 import { waLink } from "@/lib/site";
 
@@ -84,12 +86,21 @@ export default async function CasePage({
       <div className="relative z-10">
         <Navbar />
 
-      <section className="relative overflow-hidden border-b border-white/10 bg-night/60">
+      <section className="relative overflow-hidden border-b border-white/10 bg-night">
+        {/* Fondo silk animado, igual que el hero de inicio */}
+        <LazyVisible className="z-0">
+          <SilkBackground />
+        </LazyVisible>
+        {/* Velo para legibilidad del texto */}
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[150px]"
+          className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_60%_55%_at_center,rgba(0,0,0,0.5),rgba(0,0,0,0.12)_60%,transparent)]"
         />
-        <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-32 md:px-8 md:pt-36">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-0 z-[1] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[150px]"
+        />
+        <div className="relative z-10 mx-auto max-w-4xl px-5 pb-16 pt-32 md:px-8 md:pt-36">
           <Link
             href="/#casos"
             className="group inline-flex items-center gap-2 text-base font-semibold text-white transition-colors hover:text-accent"
