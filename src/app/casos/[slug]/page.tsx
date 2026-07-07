@@ -294,23 +294,31 @@ export default async function CasePage({
       {c.socials && c.socials.length > 0 && (
         <section className="border-t border-white/10 bg-night/60">
           <div className="mx-auto max-w-4xl px-5 py-16 text-center md:px-8 md:py-20">
-            <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+            <h2 className="font-coolvetica text-4xl font-bold uppercase tracking-tight text-white md:text-6xl">
               Mira su contenido
             </h2>
-            <p className="mt-3 text-white/90">
+            <p className="mt-4 text-lg text-white/90">
               Síguelos y mira lo que construimos juntos.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
               {c.socials.map((s) => (
                 <a
                   key={s.type}
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+                  className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full px-8 py-4 text-base font-bold text-black transition-all hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(155,127,212,0.6)]"
+                  style={{
+                    background:
+                      "linear-gradient(110deg, #b89dee 0%, #9b7fd4 50%, #c77dff 100%)",
+                  }}
                 >
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.55),transparent)] transition-transform duration-700 group-hover:translate-x-full"
+                  />
                   <SocialIcon type={s.type} />
-                  {socialLabel[s.type]}
+                  <span className="relative">{socialLabel[s.type]}</span>
                 </a>
               ))}
             </div>
