@@ -232,18 +232,19 @@ export default async function CasePage({
             <h2 className="font-display text-center text-2xl font-bold tracking-tight md:text-3xl">
               Míralo en acción
             </h2>
-            <div
-              className={`mt-10 grid gap-6 ${
-                c.videos.length > 1 ? "md:grid-cols-2" : ""
-              }`}
-            >
+            <div className="mt-10 flex flex-wrap items-start justify-center gap-6">
               {c.videos.map((v, i) => {
                 const embed = youtubeEmbed(v);
                 if (!embed) return null;
+                const vertical = /shorts\//.test(v);
                 return (
                   <div
                     key={v}
-                    className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/5"
+                    className={`relative overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/5 ${
+                      vertical
+                        ? "aspect-[9/16] w-full max-w-[320px]"
+                        : "aspect-video w-full max-w-2xl"
+                    }`}
                   >
                     <iframe
                       src={embed}
