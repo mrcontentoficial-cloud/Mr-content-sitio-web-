@@ -20,7 +20,7 @@ type Plan = {
 const plans: Plan[] = [
   {
     tier: "Esencial",
-    price: "$4,900",
+    price: "$2,500",
     period: "/mes",
     bestFor: "Para empezar con presencia profesional",
     benefits: [
@@ -35,7 +35,7 @@ const plans: Plan[] = [
   },
   {
     tier: "Crecimiento",
-    price: "$9,900",
+    price: "$6,000",
     period: "/mes",
     bestFor: "Para marcas que quieren vender más",
     popular: true,
@@ -51,7 +51,7 @@ const plans: Plan[] = [
   },
   {
     tier: "Dominio",
-    price: "$18,900",
+    price: "$10,000",
     period: "/mes",
     bestFor: "Para dominar tu mercado de punta a punta",
     benefits: [
@@ -194,6 +194,30 @@ export default function Pricing() {
               <PlanCard plan={plan} index={i} />
             </div>
           ))}
+        </div>
+
+        {/* Aclaración de pago + WhatsApp */}
+        <div className="mt-10 text-center">
+          <p className="text-sm text-white md:text-base">
+            Cada plan es{" "}
+            <span className="font-semibold text-accent-bright">
+              pago único de arranque + mensualidad
+            </span>
+            .
+          </p>
+          <p className="mt-2 text-sm text-white/90 md:text-base">
+            Para aclarar dudas, escríbeme al WhatsApp de la agencia:{" "}
+            <a
+              href={waLink(
+                "Hola Mister, tengo dudas sobre los planes y precios. ¿Me puedes ayudar?"
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-accent transition-colors hover:text-accent-bright"
+            >
+              479 150 7070
+            </a>
+          </p>
         </div>
 
         {/* Cotización personalizada */}
