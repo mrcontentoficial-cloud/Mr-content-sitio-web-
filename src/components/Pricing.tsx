@@ -43,10 +43,11 @@ const plans: Plan[] = [
       { text: "Gestión de 2 redes sociales", checked: true },
       { text: "Diseño de contenido y stories", checked: true },
       { text: "Reels y video mensual", checked: true },
-      { text: "Sitio web o landing page", checked: true },
+      { text: "Sitio web básico incluido", checked: true },
       { text: "Campañas de Meta Ads", checked: true },
+      { text: "Automatizaciones de redes sociales", checked: true },
       { text: "Reporte mensual de resultados", checked: true },
-      { text: "Automatización de WhatsApp", checked: false },
+      { text: "Automatización de WhatsApp 24/7", checked: false },
     ],
   },
   {
@@ -196,27 +197,15 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Aclaración de pago + WhatsApp */}
+        {/* Aclaración de pago */}
         <div className="mt-10 text-center">
-          <p className="text-sm text-white md:text-base">
-            Cada plan es{" "}
+          <p className="mx-auto max-w-2xl text-sm text-white/90 md:text-base">
+            Cada plan se compone de una{" "}
             <span className="font-semibold text-accent-bright">
-              pago único de arranque + mensualidad
-            </span>
-            .
-          </p>
-          <p className="mt-2 text-sm text-white/90 md:text-base">
-            Para aclarar dudas, escríbeme al WhatsApp de la agencia:{" "}
-            <a
-              href={waLink(
-                "Hola Mister, tengo dudas sobre los planes y precios. ¿Me puedes ayudar?"
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-accent transition-colors hover:text-accent-bright"
-            >
-              479 150 7070
-            </a>
+              inversión inicial de arranque
+            </span>{" "}
+            y una mensualidad. Sin permanencia forzosa: creces o ajustas cuando
+            lo necesites.
           </p>
         </div>
 
